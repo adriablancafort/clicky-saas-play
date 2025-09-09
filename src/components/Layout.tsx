@@ -30,7 +30,7 @@ export default function Layout({ children }: LayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div 
@@ -41,7 +41,7 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* Sidebar */}
       <div className={cn(
-        "fixed inset-y-0 left-0 z-50 w-64 transform bg-sidebar border-r border-sidebar-border transition-transform duration-200 ease-in-out md:translate-x-0 md:static md:inset-0",
+        "fixed inset-y-0 left-0 z-50 w-64 transform bg-sidebar border-r border-sidebar-border transition-transform duration-200 ease-in-out md:translate-x-0 md:static md:flex-shrink-0",
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="flex h-16 shrink-0 items-center justify-between px-6 border-b border-sidebar-border">
@@ -87,9 +87,9 @@ export default function Layout({ children }: LayoutProps) {
       </div>
 
       {/* Main content */}
-      <div className="md:pl-64">
+      <div className="flex-1 flex flex-col min-w-0">
         {/* Mobile header */}
-        <div className="sticky top-0 z-30 flex h-16 shrink-0 items-center gap-x-4 border-b border-border bg-background px-4 shadow-sm md:hidden">
+        <div className="flex h-16 shrink-0 items-center gap-x-4 border-b border-border bg-background px-4 shadow-sm md:hidden">
           <Button
             variant="ghost"
             size="sm"
@@ -106,7 +106,7 @@ export default function Layout({ children }: LayoutProps) {
         </div>
 
         {/* Page content */}
-        <main className="py-8">
+        <main className="flex-1 py-8">
           {children}
         </main>
       </div>
